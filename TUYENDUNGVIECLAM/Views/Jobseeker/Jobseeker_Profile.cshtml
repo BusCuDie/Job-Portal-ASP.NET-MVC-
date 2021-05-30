@@ -1,0 +1,71 @@
+﻿@model TUYENDUNGVIECLAM.Models.Jobseeker
+
+@{
+    ViewBag.Title = "Jobseeker_Profile";
+    Layout = "~/Views/Shared/_Layout_User.cshtml";
+}
+
+<section class="job-detail section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9 col-sm-8">
+                <div class="content-area">
+                    <h2 class="medium-title">@Model.name</h2>
+                    <div class="box">
+
+                        <div class="text-left">
+                            @if (Session["userRole"]!=null && Session["userRole"].Equals("Jobseeker"))
+                            {
+                                <a href="@Url.Action("EditProfile_JSK","Jobseeker",new {id=Session["userid"].ToString()})" class="btn btn-common btn-sm">Cập nhật hồ sơ</a>
+                            }
+                           
+
+
+
+                        </div>
+
+                        <div class="clearfix">
+                            <h4>Giới thiệu</h4>
+                            <ul>
+                                <li>@Model.aboutme</li>
+                            </ul>
+                            <h4>Thông tin cá nhân</h4>
+                            <ul>
+
+                                <li>Họ và tên: @Model.name</li>
+
+                                @{
+
+                                    String birthday = String.Format("{0:dd/MM/yyyy}", Model.birthday);
+
+                                    <li>Ngày sinh: @birthday</li>
+                                }
+                                <li>Giới tính: @Model.gender</li>
+                                <li>Quê quán : @Model.place</li>
+                                <li>Địa chỉ hiện tại : @Model.address</li>
+                                <li>Số điện thoại : @Model.phone</li>
+                                <li>Email: @Model.email</li>
+                            </ul>
+                            <h4>Thông tin nghề nghiệp</h4>
+                            <ul>
+                                <li>Đang là : @Model.current_role</li>
+                                <li>Trình độ học vấn: @Model.educational</li>
+                                <li>Nghành nghề đào tạo : @Model.career</li>
+                                <li>Kinh nghiệm: @Model.experience</li>
+                                <li>Kĩ năng: @Model.skill</li>
+                                <li>Kĩ năng khác : @Model.extraskill</li>
+                                <li>Thành tích đạt được: @Model.achivement</li>
+
+                            </ul>
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</section>

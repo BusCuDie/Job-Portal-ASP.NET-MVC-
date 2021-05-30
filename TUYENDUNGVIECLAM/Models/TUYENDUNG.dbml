@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="TUYENDUNGVIECLAM" Class="TUYENDUNGDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=HIEN\DINHHIEN_SQL;Initial Catalog=TUYENDUNGVIECLAM;Persist Security Info=True;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="TUYENDUNGVIECLAMConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Admin" Member="Admins">
+    <Type Name="Admin">
+      <Column Name="username" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="password" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Application" Member="Applications">
+    <Type Name="Application">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="job_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="jobseekr_usernmae" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Association Name="Job_Application" Member="Job" ThisKey="job_id" OtherKey="job_id" Type="Job" IsForeignKey="true" DeleteRule="CASCADE" />
+      <Association Name="Jobseeker_Application" Member="Jobseeker" ThisKey="jobseekr_usernmae" OtherKey="username" Type="Jobseeker" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Employer" Member="Employers">
+    <Type Name="Employer">
+      <Column Name="name" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="address" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="tel" Type="System.String" DbType="VarChar(11)" CanBeNull="true" />
+      <Column Name="email" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="password" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="aboutus" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="webiste" Type="System.String" DbType="VarChar(300)" CanBeNull="true" />
+      <Column Name="contact_phone" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
+      <Column Name="location" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="contact_person" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="amount_employee" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="username" Type="System.String" DbType="VarChar(100) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="Employer_Job" Member="Jobs" ThisKey="username" OtherKey="employer_usename" Type="Job" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Job" Member="Jobs">
+    <Type Name="Job">
+      <Column Name="job_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="job_title" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="job_description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="job_type" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="job_salar" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="job_experience" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="job_location" Type="System.String" DbType="NVarChar(300)" CanBeNull="true" />
+      <Column Name="job_state" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="job_address" Type="System.String" DbType="NVarChar(300)" CanBeNull="true" />
+      <Column Name="job_category" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="job_starttime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="job_postdate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="extraskill" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="require_skill" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="job_benefit" Type="System.String" DbType="NVarChar(300)" CanBeNull="true" />
+      <Column Name="employer_usename" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Association Name="Job_Application" Member="Applications" ThisKey="job_id" OtherKey="job_id" Type="Application" />
+      <Association Name="Job_Saved" Member="Saveds" ThisKey="job_id" OtherKey="job_id" Type="Saved" />
+      <Association Name="Employer_Job" Member="Employer" ThisKey="employer_usename" OtherKey="username" Type="Employer" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Jobseeker" Member="Jobseekers">
+    <Type Name="Jobseeker">
+      <Column Name="name" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="phone" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="address" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="experience" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="skill" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="aboutme" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="current_role" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="password" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="gender" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="extraskill" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="email" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="place" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="educational" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="achivement" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="career" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="birthday" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="username" Type="System.String" DbType="VarChar(100) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="Jobseeker_Application" Member="Applications" ThisKey="username" OtherKey="jobseekr_usernmae" Type="Application" />
+      <Association Name="Jobseeker_Saved" Member="Saveds" ThisKey="username" OtherKey="jobseekr_usernmae" Type="Saved" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Saved" Member="Saveds">
+    <Type Name="Saved">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="job_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="jobseekr_usernmae" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Association Name="Job_Saved" Member="Job" ThisKey="job_id" OtherKey="job_id" Type="Job" IsForeignKey="true" DeleteRule="CASCADE" />
+      <Association Name="Jobseeker_Saved" Member="Jobseeker" ThisKey="jobseekr_usernmae" OtherKey="username" Type="Jobseeker" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Function Name="dbo.Applied" Method="Applied">
+    <Parameter Name="username" Type="System.String" DbType="VarChar(100)" />
+    <ElementType Name="AppliedResult">
+      <Column Name="job_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="job_title" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="job_description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="job_type" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="job_salar" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="job_experience" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="job_location" Type="System.String" DbType="NVarChar(300)" CanBeNull="true" />
+      <Column Name="job_state" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="job_address" Type="System.String" DbType="NVarChar(300)" CanBeNull="true" />
+      <Column Name="job_category" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="job_starttime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="job_postdate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="extraskill" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="require_skill" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="job_benefit" Type="System.String" DbType="NVarChar(300)" CanBeNull="true" />
+      <Column Name="employer_usename" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.[Save]" Method="Save">
+    <Parameter Name="username" Type="System.String" DbType="VarChar(100)" />
+    <ElementType Name="SaveResult">
+      <Column Name="job_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="job_title" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="job_description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="job_type" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="job_salar" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="job_experience" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="job_location" Type="System.String" DbType="NVarChar(300)" CanBeNull="true" />
+      <Column Name="job_state" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="job_address" Type="System.String" DbType="NVarChar(300)" CanBeNull="true" />
+      <Column Name="job_category" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="job_starttime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="job_postdate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="extraskill" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="require_skill" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="job_benefit" Type="System.String" DbType="NVarChar(300)" CanBeNull="true" />
+      <Column Name="employer_usename" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.ListApplyMyJob" Method="ListApplyMyJob">
+    <Parameter Name="id" Type="System.Int32" DbType="Int" />
+    <ElementType Name="ListApplyMyJobResult">
+      <Column Name="name" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="phone" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="address" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="experience" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="skill" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="aboutme" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="current_role" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="password" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="gender" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="extraskill" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="email" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="place" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="educational" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="achivement" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="career" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="birthday" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="username" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+</Database>

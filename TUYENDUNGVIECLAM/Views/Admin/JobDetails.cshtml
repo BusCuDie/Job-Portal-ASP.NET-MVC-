@@ -1,0 +1,151 @@
+﻿@model TUYENDUNGVIECLAM.Models.Job
+
+@{
+    ViewBag.Title = "JobDetails";
+    Layout = "~/Views/Shared/_Layout_admin.cshtml";
+}
+
+<section class="job-detail section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9 col-sm-8">
+                <div class="content-area">
+                    <h2 class="medium-title">Chi tiết công việc</h2>
+                    <div class="box">
+                        <div class="text-left">
+                            <h3><a href="#">@Model.job_title</a></h3>
+
+                            <div class="meta">
+                                <span><a href="#"><i class="ti-location-pin"></i> @Model.job_location</a></span>
+                                @{
+
+                                    String hannop = String.Format("{0:dd/MM/yyyy}", Model.job_starttime);
+                                    <span><a href="#"><i class="ti-calendar"></i>Hạn nộp: @hannop</a></span>
+
+                                }
+
+                            </div>
+                            <strong class="price"><i class="fa fa-money"></i>@Model.job_salar</strong>
+                            <a href="#" class="btn btn-border btn-sm">@Model.job_type</a>
+                            @{
+                                DateTime nowdate = DateTime.Now;
+                                int compare = DateTime.Compare(nowdate, Model.job_starttime.Value);
+
+                                if (compare < 0)
+                                {
+                                    if (Session["userRole"].Equals("Jobseeker"))
+                                    {
+                                        bool check = false;
+                                        int jobseeker_id = int.Parse(Session["userid"].ToString());
+                                        foreach (var x in ViewBag.checkapply)
+                                        {
+
+                                            if (x.jobseeker == jobseeker_id && x.job_id == Model.job_id) { check = true; }
+
+                                        }
+
+                                        if (check == true)
+                                        {
+                                            <a href="@Url.Action("Application","Jobseeker",new {job_id =Model.job_id})" class="btn btn-primary btn-rm">Đã ứng tuyển</a>
+                                        }
+                                        else
+                                        {
+                                            <a href="@Url.Action("Application","Jobseeker",new { job_id = Model.job_id})" class="btn btn-common btn-sm">Ứng tuyển vị trí này</a>
+                                        }
+
+                                    }
+                                    else if (Session["userRole"].Equals("Employer"))
+                                    {
+                                        <a href="#" class="btn btn-common btn-sm">Cập nhật bài viết</a>
+                                    }
+                                    else
+                                    {
+                                        <a href="#" class="btn btn-common btn-sm">Bạn không thể ứng tuyển</a>
+                                    }
+
+                                }
+                                else
+                                {
+                                    <a href="#" class="btn btn-common btn-sm">Đã hết hạn ứng tuyển</a>
+                                }
+
+                            }
+
+
+
+                        </div>
+                        <div class="clearfix">
+
+                            <h4>Mô tả công việc</h4>
+                            <ul>
+                                @{
+                                    String[] jobs = Model.job_description.Split('.');
+                                    //chỗ này là chạy tới < lenght-1 bởi vì split nó tính luôn cái dấu chấm cuối câu
+                                    foreach (var line in jobs)
+                                    {
+                                        //kiểm tra từng phần tử có khác null hay khác rỗng hay không
+                                        if (line.Trim().Length > 1)
+                                        {
+                                            <li><i class="ti-check-box"></i>@line</li>
+                                        }
+
+                                    }
+                                }
+
+                            </ul>
+                            <h4>Yêu cầu</h4>
+                            <ul>
+                                @{
+                                    String[] jobRequire = Model.require_skill.Split('.');
+                                    //chỗ này là chạy tới < lenght-1 bởi vì split nó tính luôn cái dấu chấm cuối câu
+                                    foreach (var line in jobRequire)
+                                    {
+                                        if (line.Trim().Length > 1)
+                                        {
+                                            <li><i class="ti-check-box"></i>@line</li>
+                                        }
+
+                                    }
+                                }
+                            </ul>
+                            <h4>Yêu cầu khác</h4>
+                            <ul>
+                                @{
+                                    String[] jobextras = Model.extraskill.Split('.');
+                                    //chỗ này là chạy tới < lenght-1 bởi vì split nó tính luôn cái dấu chấm cuối câu
+                                    foreach (var line in jobextras)
+                                    {
+                                        if (line.Trim().Length > 1)
+                                        {
+                                            <li><i class="ti-check-box"></i>@line</li>
+                                        }
+
+                                    }
+                                }
+                            </ul>
+                            <h4>Quyền lợi</h4>
+                            <ul>
+                                @{
+                                    String[] jobbenifit = Model.job_benefit.Split('.');
+                                    //chỗ này là chạy tới < lenght-1 bởi vì split nó tính luôn cái dấu chấm cuối câu
+                                    foreach (var line in jobbenifit)
+                                    {
+
+                                        if (line.Trim().Length > 1)
+                                        {
+                                            <li><i class="ti-check-box"></i>@line</li>
+                                        }
+
+                                    }
+                                }
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</section>

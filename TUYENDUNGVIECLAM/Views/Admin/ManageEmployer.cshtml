@@ -1,0 +1,61 @@
+﻿@model IEnumerable<TUYENDUNGVIECLAM.Models.Employer>
+
+@{
+    ViewBag.Title = "ManageJobseeker";
+    Layout = "~/Views/Shared/_Layout_admin.cshtml";
+}
+
+
+
+
+<div class="card mb-4">
+    <div class="card-header">
+        <i class="fas fa-table me-1"></i>
+        @Html.ActionLink("Thêm mới", "AddAEmployer")
+    </div>
+    <div class="card-body">
+        <table id="datatablesSimple">
+            <thead>
+                <tr>
+                    <th>Tên công ty</th>
+                    <th>Tỉnh </th>
+                    <th>Webste</th>
+                    <th>Fax/tel</th>
+                    <th>User</th>
+
+                    <th>Xem</th>
+                    <th>Xóa</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>Tên công ty</th>
+                    <th>Tỉnh </th>
+                    <th>Webste</th>
+                    <th>Fax/tel</th>
+                    <th>User</th>
+
+                    <th>Xem</th>
+                    <th>Xóa</th>
+                </tr>
+            </tfoot>
+
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.name</td>
+                        <td>@item.location</td>
+                        <td>@item.webiste</td>
+                        <td>@item.tel</td>
+                        <td>@item.username</td>
+
+                        <td><a href="@Url.Action("DetailsEmp","Admin",new { username = item.username.Trim()})">Xem</a></td>
+                        <td><a href="@Url.Action("DeleteEmp","Admin",new { username = item.username.Trim()})">Xóa</a></td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>

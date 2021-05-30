@@ -1,0 +1,61 @@
+﻿
+@{
+    ViewBag.Title = "login";
+    Layout = "~/Views/Shared/_Layout_User.cshtml";
+}
+
+<div style="padding:50px;height:500px;">
+    <table align="center">
+
+        @using (Html.BeginForm())
+        {
+            @Html.ValidationSummary(true)
+            <tr style="height:40px">
+                <td></td>
+                <td>
+                    <h2>ĐĂNG NHẬP </h2>
+                </td>
+            </tr>
+            <tr style="height:40px">
+                <td>Chọn quyền truy cập</td>
+                <td>
+                    <select name="role">
+                        <option>Quản trị viên</option>
+                        <option>Nhà tuyển dụng</option>
+                        <option>Người tìm việc</option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr style="height:40px">
+                <td>Tên đăng nhập</td>
+                <td>
+                    @Html.TextBox("username")
+                    @ViewData["err_email"]
+                </td>
+            </tr>
+            <tr style="height:40px">
+                <td>Mật khẩu</td>
+                <td class="">
+                    @Html.Password("password")
+                    @ViewData["err_pass"]
+                </td>
+            </tr>
+            <tr style="height:40px">
+                <td></td>
+                <td>
+                    @ViewData["checklogin"]
+                </td>
+            </tr>
+            <tr style="height:40px">
+                <td></td>
+                <td>
+                    <input class="btn btn-common btn-sm" type="submit" value="Đăng nhập">
+                </td>
+            </tr>
+
+        }
+    </table>
+
+</div>
+

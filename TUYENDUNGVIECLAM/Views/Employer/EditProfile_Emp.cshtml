@@ -1,0 +1,173 @@
+﻿@model TUYENDUNGVIECLAM.Models.Employer
+
+@{
+    ViewBag.Title = "EditProfile_Emp";
+    Layout = "~/Views/Shared/_Layout_User.cshtml";
+}
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.username)
+
+        <div class="form-group">
+            @Html.Label("Tên công ty", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Số điện thoại", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.tel, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.tel, "", new { @class = "text-danger" })
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Tỉnh thành", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <select name="location" class="form-control" data-placeholder="Danh sách tỉnh thành">
+                    <option>An Giang</option>
+                    <option>B&#xE0; R&#x1ECB;a - V&#x169;ng T&#xE0;u</option>
+                    <option>B&#x1EA1;c Li&#xEA;u</option>
+                    <option>B&#x1EAF;c K&#x1EA1;n</option>
+                    <option>B&#x1EAF;c Giang</option>
+                    <option>B&#x1EAF;c Ninh</option>
+                    <option>TP. H&#x1ED3; Ch&#xED; Minh</option>
+                    <option>B&#x1EBF;n Tre</option>
+                    <option>B&#xEC;nh D&#x1B0;&#x1A1;ng</option>
+                    <option>B&#xEC;nh &#x110;&#x1ECB;nh</option>
+                    <option>B&#xEC;nh Ph&#x1B0;&#x1EDB;c</option>
+                    <option>B&#xEC;nh Thu&#x1EAD;n</option>
+                    <option>C&#xE0; Mau</option>
+                    <option>Cao B&#x1EB1;ng</option>
+                    <option>C&#x1EA7;n Th&#x1A1;</option>
+                    <option>&#x110;&#xE0; N&#x1EB5;ng</option>
+                    <option>&#x110;&#x1EAF;k L&#x1EAF;k</option>
+                    <option>&#x110;&#x1EAF;k N&#xF4;ng</option>
+                    <option>&#x110;&#x1ED3;ng Nai</option>
+                    <option>&#x110;&#x1ED3;ng Th&#xE1;p</option>
+                    <option>&#x110;i&#x1EC7;n Bi&#xEA;n</option>
+                    <option>Gia Lai</option>
+                    <option>H&#xE0; Giang</option>
+                    <option>H&#xE0; Nam</option>
+                    <option>H&#xE0; N&#x1ED9;i</option>
+                    <option>H&#xE0; T&#x129;nh</option>
+                    <option>H&#x1EA3;i D&#x1B0;&#x1A1;ng</option>
+                    <option>H&#x1EA3;i Ph&#xF2;ng</option>
+                    <option>H&#xF2;a B&#xEC;nh</option>
+                    <option>H&#x1EAD;u Giang</option>
+                    <option>H&#x1B0;ng Y&#xEA;n</option>
+                    <option>Kh&#xE1;nh H&#xF2;a</option>
+                    <option>Ki&#xEA;n Giang</option>
+                    <option>Kon Tum</option>
+                    <option>Lai Ch&#xE2;u</option>
+                    <option>L&#xE0;o Cai</option>
+                    <option>L&#x1EA1;ng S&#x1A1;n</option>
+                    <option>L&#xE2;m &#x110;&#x1ED3;ng</option>
+                    <option>Long An</option>
+                    <option>Nam &#x110;&#x1ECB;nh</option>
+                    <option>Ngh&#x1EC7; An</option>
+                    <option>Ninh B&#xEC;nh</option>
+                    <option>Ninh Thu&#x1EAD;n</option>
+                    <option>Ph&#xFA; Th&#x1ECD;</option>
+                    <option>Ph&#xFA; Y&#xEA;n</option>
+                    <option>Qu&#x1EA3;ng B&#xEC;nh</option>
+                    <option>Qu&#x1EA3;ng Nam</option>
+                    <option>Qu&#x1EA3;ng Ng&#xE3;i</option>
+                    <option>Qu&#x1EA3;ng Ninh</option>
+                    <option>Qu&#x1EA3;ng Tr&#x1ECB;</option>
+                    <option>S&#xF3;c Tr&#x103;ng</option>
+                    <option>S&#x1A1;n La</option>
+                    <option>T&#xE2;y Ninh</option>
+                    <option>Th&#xE1;i B&#xEC;nh</option>
+                    <option>Th&#xE1;i Nguy&#xEA;n</option>
+                    <option>Thanh H&#xF3;a</option>
+                    <option>Th&#x1EEB;a Thi&#xEA;n - Hu&#x1EBF;</option>
+                    <option>Ti&#x1EC1;n Giang</option>
+                    <option>Tr&#xE0; Vinh</option>
+                    <option>Tuy&#xEA;n Quang</option>
+                    <option>V&#x129;nh Long</option>
+                    <option>V&#x129;nh Ph&#xFA;c</option>
+                    <option>Y&#xEA;n B&#xE1;i</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Địa chỉ", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.address, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.address, "", new { @class = "text-danger" })
+
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Số lượng nhân viên", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.amount_employee, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.amount_employee, "", new { @class = "text-danger" })
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Website", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.webiste, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.webiste, "", new { @class = "text-danger" })
+
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Sơ lược nhà tuyển dụng", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <textarea name="aboutus" style="height:200px;width:1100px"></textarea>
+
+            </div>
+        </div>
+        <div style="text-align:center;margin:15px auto;color:red">
+            <h3>THÔNG TIN BỘ PHẬN NHÂN SỰ</h3>
+        </div>
+        <div class="form-group">
+            @Html.Label("Liên hệ với:", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.contact_person, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.contact_person, "", new { @class = "text-danger" })
+
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.Label("Số điện thoại liên hệ", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.contact_phone, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.contact_phone, "", new { @class = "text-danger" })
+
+            </div>
+        </div>
+        <div style="text-align:center;margin:0 auto;color:red">
+            <h5> @ViewData["em_error"]</h5>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Cập nhật" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+

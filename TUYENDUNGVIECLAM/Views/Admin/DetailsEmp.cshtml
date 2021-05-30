@@ -1,0 +1,60 @@
+﻿@model TUYENDUNGVIECLAM.Models.Employer
+
+@{
+    ViewBag.Title = "DetailsEmp";
+    Layout = "~/Views/Shared/_Layout_admin.cshtml";
+}
+
+<section class="job-detail section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9 col-sm-8">
+                <div class="content-area">
+                    <h2 class="medium-title">@Model.name</h2>
+                    <div class="box">
+                        <div class="text-left">
+
+
+
+
+                            <a href="#" class="btn btn-common btn-sm"></a>
+
+
+
+                        </div>
+
+                        <div class="clearfix">
+
+                            <h4>Sơ lược</h4>
+                            <ul>
+
+                                <li>@Model.aboutus</li>
+
+                            </ul>
+                            <h4>Thông tin chi tiết</h4>
+                            <ul>
+
+                                <li>Quy mô: @Model.amount_employee</li>
+                                <li>Trụ sở: @Model.location</li>
+                                <li>Địa chỉ : @Model.address</li>
+                                <li>Fax/Tel : @Model.tel</li>
+                                <li>Email : @Model.email</li>
+                                <li>Website : <a href="@Model.webiste">@Model.webiste</a></li>
+                            </ul>
+                            <h4>Thông tin liên hệ</h4>
+                            <ul>
+                                <li>Liên hệ với : @Model.contact_person</li>
+                                <li>Số điện thoại tuyển dụng: @Model.contact_phone</li>
+                            </ul>
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</section>

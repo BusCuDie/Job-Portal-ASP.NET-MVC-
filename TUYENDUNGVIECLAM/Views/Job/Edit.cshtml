@@ -1,0 +1,237 @@
+﻿@model TUYENDUNGVIECLAM.Models.Job
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout_User.cshtml";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+      
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.job_id)
+
+        <div class="form-group">
+
+            <label class="control-label col-md-2">
+                Vị trí cần tuyển
+            </label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.job_title, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.job_title, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">
+                Lĩnh vực
+            </label>
+            <div class="col-md-10">
+                <select name="category_id" class="form-control" class="chosen-city">
+
+                    <option>D&#x1ECB;ch v&#x1EE5; T&#xE0;i ch&#xED;nh</option>
+                    <option>Truy&#x1EC1;n th&#xF4;ng</option>
+                    <option>H&#xE0;ng ti&#xEA;u d&#xF9;ng &amp; b&#xE1;n l&#x1EBB;</option>
+                    <option>Kh&#xE1;ch s&#x1EA1;n &amp; du l&#x1ECB;ch</option>
+                    <option>K&#x1EF9; thu&#x1EAD;t - c&#xF4;ng ngh&#x1EC7;</option>
+                    <option>X&#xE2;y d&#x1EF1;ng</option>
+                    <option>V&#x1EAD;n t&#x1EA3;i</option>
+                    <option>D&#x1ECB;ch v&#x1EE5;</option>
+                    <option>Giao d&#x1ECB;ch kh&#xE1;ch h&#xE0;ng</option>
+                    <option>B&#x1ED9; ph&#x1EAD;n h&#x1ED7; tr&#x1EE3;</option>
+                    <option>K&#x1EF9; thu&#x1EAD;t</option>
+                    <option>Y t&#x1EBF;</option>
+                    <option>S&#x1EA3;n xu&#x1EA5;t</option>
+                    <option>H&#x1ED7; tr&#x1EE3; s&#x1EA3;n xu&#x1EA5;t</option>
+                    <option>Nh&#xE2;n s&#x1EF1;</option>
+                    <option>Kinh doanh</option>
+                    <option>Phi&#xEA;n d&#x1ECB;ch </option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">
+                Hình thức làm việc
+            </label>
+            <div class="col-md-10">
+                <select name="job_type" class="form-control" class="chosen-city">
+                    <option>Full-Time</option>
+                    <option>Part-Time </option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">
+                Kinh nghiệm
+            </label>
+            <div class="col-md-10">
+                <select name="job_experience" class="form-control" class="chosen-city">
+                    <option>Không yêu cầu kinh nghiệm</option>
+                    <option>Dưới 1 năm</option>
+                    <option>1-3 năm</option>
+                    <option>3-5 năm </option>
+                    <option>5-7 năm</option>
+                    <option>7-10 năm</option>
+                    <option>Trên 10 năm</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+
+            <label class="control-label col-md-2">
+                Yêu cầu bắt buộc
+            </label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.require_skill, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.job_title, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+
+            <label class="control-label col-md-2">
+                Yêu cầu khác
+            </label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.extraskill, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.job_title, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">
+                Lương
+            </label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.job_salar, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.job_salar, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+
+            <label class="control-label col-md-2">
+                Quyền lợi
+            </label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.job_benefit, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.job_title, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">
+                Tỉnh/thành phố
+            </label>
+            <div class="col-md-10">
+                <select class="form-control" name="job_location">
+                    <option>An Giang</option>
+                    <option>B&#xE0; R&#x1ECB;a - V&#x169;ng T&#xE0;u</option>
+                    <option>B&#x1EA1;c Li&#xEA;u</option>
+                    <option>B&#x1EAF;c K&#x1EA1;n</option>
+                    <option>B&#x1EAF;c Giang</option>
+                    <option>B&#x1EAF;c Ninh</option>
+                    <option>TP. H&#x1ED3; Ch&#xED; Minh</option>
+                    <option>B&#x1EBF;n Tre</option>
+                    <option>B&#xEC;nh D&#x1B0;&#x1A1;ng</option>
+                    <option>B&#xEC;nh &#x110;&#x1ECB;nh</option>
+                    <option>B&#xEC;nh Ph&#x1B0;&#x1EDB;c</option>
+                    <option>B&#xEC;nh Thu&#x1EAD;n</option>
+                    <option>C&#xE0; Mau</option>
+                    <option>Cao B&#x1EB1;ng</option>
+                    <option>C&#x1EA7;n Th&#x1A1;</option>
+                    <option>&#x110;&#xE0; N&#x1EB5;ng</option>
+                    <option>&#x110;&#x1EAF;k L&#x1EAF;k</option>
+                    <option>&#x110;&#x1EAF;k N&#xF4;ng</option>
+                    <option>&#x110;&#x1ED3;ng Nai</option>
+                    <option>&#x110;&#x1ED3;ng Th&#xE1;p</option>
+                    <option>&#x110;i&#x1EC7;n Bi&#xEA;n</option>
+                    <option>Gia Lai</option>
+                    <option>H&#xE0; Giang</option>
+                    <option>H&#xE0; Nam</option>
+                    <option>H&#xE0; N&#x1ED9;i</option>
+                    <option>H&#xE0; T&#x129;nh</option>
+                    <option>H&#x1EA3;i D&#x1B0;&#x1A1;ng</option>
+                    <option>H&#x1EA3;i Ph&#xF2;ng</option>
+                    <option>H&#xF2;a B&#xEC;nh</option>
+                    <option>H&#x1EAD;u Giang</option>
+                    <option>H&#x1B0;ng Y&#xEA;n</option>
+                    <option>Kh&#xE1;nh H&#xF2;a</option>
+                    <option>Ki&#xEA;n Giang</option>
+                    <option>Kon Tum</option>
+                    <option>Lai Ch&#xE2;u</option>
+                    <option>L&#xE0;o Cai</option>
+                    <option>L&#x1EA1;ng S&#x1A1;n</option>
+                    <option>L&#xE2;m &#x110;&#x1ED3;ng</option>
+                    <option>Long An</option>
+                    <option>Nam &#x110;&#x1ECB;nh</option>
+                    <option>Ngh&#x1EC7; An</option>
+                    <option>Ninh B&#xEC;nh</option>
+                    <option>Ninh Thu&#x1EAD;n</option>
+                    <option>Ph&#xFA; Th&#x1ECD;</option>
+                    <option>Ph&#xFA; Y&#xEA;n</option>
+                    <option>Qu&#x1EA3;ng B&#xEC;nh</option>
+                    <option>Qu&#x1EA3;ng Nam</option>
+                    <option>Qu&#x1EA3;ng Ng&#xE3;i</option>
+                    <option>Qu&#x1EA3;ng Ninh</option>
+                    <option>Qu&#x1EA3;ng Tr&#x1ECB;</option>
+                    <option>S&#xF3;c Tr&#x103;ng</option>
+                    <option>S&#x1A1;n La</option>
+                    <option>T&#xE2;y Ninh</option>
+                    <option>Th&#xE1;i B&#xEC;nh</option>
+                    <option>Th&#xE1;i Nguy&#xEA;n</option>
+                    <option>Thanh H&#xF3;a</option>
+                    <option>Th&#x1EEB;a Thi&#xEA;n - Hu&#x1EBF;</option>
+                    <option>Ti&#x1EC1;n Giang</option>
+                    <option>Tr&#xE0; Vinh</option>
+                    <option>Tuy&#xEA;n Quang</option>
+                    <option>V&#x129;nh Long</option>
+                    <option>V&#x129;nh Ph&#xFA;c</option>
+                    <option>Y&#xEA;n B&#xE1;i</option>
+                </select>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label class="control-label col-md-2">
+                Hạn nộp
+            </label>
+            <div class="col-md-10">
+                <input type="date" name="job_starttime" class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">
+                Địa chỉ
+            </label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.job_address, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.job_address, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label class="control-label col-md-2">
+                Mô tả công việc
+            </label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.job_description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.job_description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div style="text-align:center;margin:0 auto;color:red">
+            <h5> @ViewData["job_err"]</h5>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Cập nhật" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+

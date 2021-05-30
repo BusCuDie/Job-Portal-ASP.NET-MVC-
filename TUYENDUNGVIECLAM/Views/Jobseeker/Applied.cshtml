@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "Applied";
+    Layout = "~/Views/Shared/_Layout_User.cshtml";
+}
+
+<section class="find-job section">
+    <div class="container">
+        <div style="text-align:center"><h2 class="section-title">Việc đã ứng tuyển</h2></div>
+        <div class="row">
+            <div class="col-md-12">
+                @foreach (var item in ViewBag.applied)
+                {
+                    <div class="job-list">
+                        <div class="thumb">
+                            <a href="#"><img src="assets/img/jobs/img-1.jpg" alt=""></a>
+                        </div>
+                        <div class="job-list-content">
+                            <h4><a href="job-details.html">@item.job_title</a><span class="full-time">@item.job_type</span></h4>
+                            <p>@item.job_description</p>
+                            <div class="job-tag">
+                                <div class="pull-left">
+                                    <div class="meta-tag">
+                                        <span><a href="browse-categories.html"><i class="ti-brush"></i>@item.job_category</a></span>
+                                        <span><i class="ti-location-pin"></i>@item.job_location</span>
+                                        <span><i class="ti-time"></i>@item.job_salar</span>
+                                    </div>
+                                </div>
+                                <div class="pull-right">
+                                    <div class="icon">
+                                        <a href="#"><i class=""></i></a>
+                                    </div>
+                                    <a href="@Url.Action("Cancel_Apply","Jobseeker",new {job_id =item.job_id})" class="btn btn-common btn-rm">Hủy ứng tuyển</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
